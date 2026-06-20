@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-app-service
+  labels:
+    app: my-app
+spec:
+  type: ClusterIP  # Options: ClusterIP (Internal), NodePort (External port), LoadBalancer (Cloud Provider)
+  selector:
+    app: my-app    # This must match the 'labels' in your Deployment/Pod's metadata section
+  ports:
+    - protocol: TCP
+      port: 80         # The port the service exposes internally in the cluster
+      targetPort: 8080 # The port your application is running on inside the container
